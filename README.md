@@ -45,29 +45,18 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Atención
+
+Para el envío de mail se trabajó con MailTrap https://mailtrap.io/ 
+se crea un archivo .env y se declara las siguientes variables
 
 ```bash
 # unit tests
-$ npm run test
+MAIL_HOST=TuHost
+MAIL_PORT=TuPUERTO
+MAIL_USER=TUUSER
+MAIL_PASSWORD=TUPASSWORD
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+DEFAULT_EMAIL_FROM=example@example.com
+APP_NAME=example
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).

@@ -7,11 +7,11 @@
 
   <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
 
-## Description
+## Descripción
 
 [Nest](https://github.com/nestjs/nest) Se realiza API de TEST de IX referido a planes de carrera. Se implementa MailTrap para el envío de mail.
 
-## Installation
+## Instalación
 
 ```bash
 $ npm install

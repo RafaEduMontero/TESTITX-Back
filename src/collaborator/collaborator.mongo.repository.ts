@@ -5,6 +5,7 @@ import { CollaboratorDocument, CollaboratorModel } from "./schema/collaborator.s
 import { CollaboratorRepository } from './collaborator.repository';
 import { CollaboratorDto } from "./dto/collaborator.dto";
 import { User } from "src/users/entities/user.entity";
+import { Skill } from "src/skills/entities/skill.entity";
 
 @Injectable()
 export class CollaboratorMongoRepository implements CollaboratorRepository{
@@ -76,5 +77,12 @@ export class CollaboratorMongoRepository implements CollaboratorRepository{
             { 'user.id': user.id },
             { $set: { 'user': user } },
           );
+    }
+
+    async updateManyByIdSkill(skill:Skill):Promise<void>{
+        await this.collaboratorModel.updateMany(
+            { 'skills': { $elemMatch: { id: skill.id } } },
+            { $set: { 'skills.$.title': skill.title, 'skills.$.description': skill.description } },
+        );
     }
 }

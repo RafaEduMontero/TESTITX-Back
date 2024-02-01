@@ -34,13 +34,13 @@ export class CollaboratorService {
     
       async updateCollaborator(updateCollaboratorDto: CollaboratorDto, id: string) {
         const collaborator = await this.collaboratorRepository.updateCollaborator(id,updateCollaboratorDto)
-        // const sendMaildto:SendMailDto ={
-        //   recipients:[{name: `${collaborator.user.name} ${collaborator.user.surname}`,address: collaborator.user.email }],
-        //   subject: 'Actualización de Colaborador',
-        //   html: `<p><strong>Felicitaciones</strong></p>
-        //   <p>${collaborator.user.name} ${collaborator.user.surname}. Te contamos que Aprobaste tu habilidad</p>`
-        // }
-        // await this.mailerRepository.sendMail(sendMaildto);
+        const sendMaildto:SendMailDto ={
+          recipients:[{name: `${collaborator.user.name} ${collaborator.user.surname}`,address: collaborator.user.email }],
+          subject: 'Actualización de Colaborador',
+          html: `<p><strong>Hola</strong></p>
+          <p>${collaborator.user.name} ${collaborator.user.surname}. Te contamos que actualizamos el estado de tus habilidades</p>`
+        }
+        await this.mailerRepository.sendMail(sendMaildto);
         return collaborator;
       }
     

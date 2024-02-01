@@ -3,13 +3,15 @@ import { SKIll_REPOSITORY, SkillRepository } from './skill.repository';
 import { CreateSkillDto } from './dto/create-skill.dto';
 import { UpdateSkillDto } from './dto/update-skill.dto';
 import { UsersService } from 'src/users/users.service';
+import { COLLABORATOR_REPOSITORY, CollaboratorRepository } from 'src/collaborator/collaborator.repository';
 
 @Injectable()
 export class SkillsService {
     private readonly logger = new Logger(SkillsService.name);
 
     constructor(
-        @Inject(SKIll_REPOSITORY) private readonly skillRepository:SkillRepository
+        @Inject(SKIll_REPOSITORY) private readonly skillRepository:SkillRepository,
+        @Inject(COLLABORATOR_REPOSITORY) private readonly collaboratorRepository: CollaboratorRepository
     ){}
 
     async findAll() {
@@ -32,8 +34,9 @@ export class SkillsService {
       }
     
       async updateSkill(updateSkillDto: UpdateSkillDto, id: string) {
-        const user = await this.skillRepository.updateSkill(id,updateSkillDto)
-        return user;
+        const skill = await this.skillRepository.updateSkill(id,updateSkillDto);
+        await this.collaboratorRepository.updateManyByIdSkill(skill);
+        return skill;
       }
     
       async deleteById(id: string) {
